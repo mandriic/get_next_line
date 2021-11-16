@@ -17,9 +17,9 @@ void	ft_read(int *num_read, char **buf, char **out, int *fd)
 	while (1)
 	{
 		*num_read = (int)read(*fd, *buf, BUFFER_SIZE);
-		buf[0][*num_read] = '\0';
-		if ((ft_strchr_mod (*buf, '\n') > 0)
-			|| *num_read == 0 || *num_read == -1)
+		 if (*num_read != -1)
+			buf[0][*num_read] = '\0';
+		if (*num_read == 0 || *num_read == -1 || (ft_strchr_mod (*buf, '\n') > 0))
 		{
 			if (*num_read == 0)
 				buf[0][0] = '\0';
@@ -52,7 +52,7 @@ static void	ft_find_n(char **out, char **memory, char **buf)
 	i = -1;
 	if (!*out)
 	{
-		*out = (char *)malloc(sizeof(char) * (ft_strchr_mod(*buf, '\n')));
+		*out = (char *)malloc(sizeof(char) * (ft_strchr_mod(*buf, '\n') + 1));
 		while (buf[0][++i] != '\n' && buf[0][i] != '\0')
 			out[0][i] = buf[0][i];
 		if (buf[0][i] == '\n')
@@ -113,3 +113,122 @@ char	*get_next_line(int fd)
 		return (NULL);
 	return (out);
 }
+
+// #include <stdio.h>
+// #include <fcntl.h>
+// int main()
+// {
+// 	 char *main_char;
+// 	int fd;
+//     //fd = open ("fd", O_RDONLY);
+// 	fd = 1000;
+// 	// printf("%d, %d, %s", fd, argc, *(argv + argc - 1));
+// 	main_char = get_next_line(fd);
+// 	printf("<-------%s------------>", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("<-------%s------------>", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("<-------%s------------>", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("<-------%s------------>", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("-------%s------------", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("GNL-------%s------------", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("GNL-------%s------------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("GNL-------%s------------\n", main_char);
+// 	free(main_char);
+// }
+	// main_char = get_next_line(fd);
+	// printf("GNL-------%s------------\n", main_char);
+	// free(main_char);
+	// main_char = get_next_line(fd);
+	// printf("\n\n\n\n\nGNL-------%s-----------\n", main_char);
+	// free(main_char);
+	// main_char = get_next_line(fd);
+	// printf("GNL-------%s------------\n", main_char);
+	// free(main_char);
+	// main_char = get_next_line(fd);
+	// printf("\n\n\n\n\nGNL-------%s-----------\n", main_char);
+	// free(main_char);
+	// main_char = get_next_line(fd);
+	// printf("GNL-------%s------------\n", main_char);
+	// free(main_char);
+	// main_char = get_next_line(fd);
+	// printf("\n\n\n\n\nGNL-------%s-----------\n", main_char);
+	// free(main_char);
+
+
+
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s------------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("GNL-------%s------------\n", main_char);
+// 	free(main_char);
+// 		main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s-----------\n", main_char);
+// 	free(main_char);
+// }
+
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s------------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("GNL-------%s------------\n", main_char);
+// 	free(main_char);
+// 		main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s-----------\n", main_char);
+// 	free(main_char);
+
+
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s------------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s------------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s----------\n", main_char);
+// 	free(main_char);
+// 	main_char = get_next_line(fd);
+// 	printf("\n\n\n\n\nGNL-------%s------------\n", main_char);
+// 	free(main_char);
+ 

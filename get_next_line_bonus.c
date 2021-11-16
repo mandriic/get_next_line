@@ -17,9 +17,9 @@ void	ft_read(int *num_read, char **buf, char **out, int *fd)
 	while (1)
 	{
 		*num_read = (int)read(*fd, *buf, BUFFER_SIZE);
-		buf[0][*num_read] = '\0';
-		if ((ft_strchr_mod (*buf, '\n') > 0)
-			|| *num_read == 0 || *num_read == -1)
+		if(*num_read != -1)
+			buf[0][*num_read] = '\0';
+		if (*num_read == 0 || *num_read == -1 || (ft_strchr_mod (*buf, '\n') > 0))
 		{
 			if (*num_read == 0)
 				buf[0][0] = '\0';
@@ -38,7 +38,7 @@ static void	ft_write_mem(char **memory, char **buf, int count)
 	int	len;
 
 	i = 0;
-	len = (ft_strlen(*buf) - ft_strchr_mod(*buf, '\n'));
+	len = (ft_strlen(*buf) - ft_strchr_mod(*buf, '\n') + 1);
 	*memory = (char *)malloc(sizeof(char) * len + 1);
 	while (buf[0][count] != '\0' && i < len)
 		memory[0][i++] = buf[0][count++];
@@ -52,7 +52,7 @@ static void	ft_find_n(char **out, char **memory, char **buf)
 	i = -1;
 	if (!*out)
 	{
-		*out = (char *)malloc(sizeof(char) * (ft_strchr_mod(*buf, '\n')));
+		*out = (char *)malloc(sizeof(char) * (ft_strchr_mod(*buf, '\n') + 1));
 		while (buf[0][++i] != '\n' && buf[0][i] != '\0')
 			out[0][i] = buf[0][i];
 		if (buf[0][i] == '\n')
